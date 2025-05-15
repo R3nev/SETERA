@@ -17,7 +17,7 @@ class Myapp extends StatelessWidget {
         }else {
           return GetMaterialApp(
             title: "Application",
-            initialRoute: Routes. LOGIN,
+            initialRoute: Routes. login,
             getPages: AppPages.routes,
           );
         }

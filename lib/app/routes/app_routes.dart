@@ -5,8 +5,8 @@ abstract class Routes {
   Routes._();
   
   // Ubah nama konstanta di Routes sesuai dengan di _Paths
-  static const HOME = _Paths.home;
-  static const LOGIN = _Paths.login;
+  static const home = _Paths.home;
+  static const login = _Paths.login;
   static const splash = _Paths.splash;
 }
 
