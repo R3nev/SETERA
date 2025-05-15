@@ -3,12 +3,18 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-  static const HOME = _Paths.HOME;
-  static const LOGIN = _Paths.LOGIN;
+  
+  // Ubah nama konstanta di Routes sesuai dengan di _Paths
+  static const HOME = _Paths.home;
+  static const LOGIN = _Paths.login;
+  static const splash = _Paths.splash;
 }
 
 abstract class _Paths {
   _Paths._();
-  static const HOME = '/home';
-  static const LOGIN = '/login';
+  
+  // Nama konstanta sudah benar dengan lowerCamelCase
+  static const home = '/home';
+  static const login = '/login';
+  static const splash = '/splash';
 }
