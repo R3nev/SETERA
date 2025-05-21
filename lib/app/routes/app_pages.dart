@@ -1,12 +1,10 @@
 import 'package:get/get.dart';
-
-import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
-import '../modules/login/bindings/login_binding.dart';
-import '../modules/login/views/login_view.dart';
 import '../widgets/splash.dart';
-
-part 'app_routes.dart';
+import '../modules/home/views/home_view.dart';
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/login/views/login_view.dart';
+import '../modules/login/bindings/login_binding.dart' as login_binding;
+part '../routes/app_routes.dart';
 
 class AppPages {
   AppPages._();
@@ -25,8 +23,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.login,
-      page: () => const LoginView(),
-      binding: LoginBinding(),
+      page: () => const LoginScreen(),
+      binding: login_binding.LoginBinding(),
     ),
   ];
 }
