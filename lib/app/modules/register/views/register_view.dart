@@ -27,12 +27,20 @@ class RegisterView extends GetView<RegisterController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const Text(
+                      'Silahkan Bergabung',
+                      style: TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                     const SizedBox(height: 5),
                     SizedBox(
-                      width: 170,
-                      height: 170,
+                      width: 200,
+                      height: 200,
                       child: Image.asset(
-                        'assets/mascot/login.png',
+                        'assets/mascot/Group2.png',
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -122,13 +130,13 @@ class RegisterView extends GetView<RegisterController> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 43),
                     // Register Button
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Register functionality here
+                          // Register funrctionality here
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF003366),

@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: GestureDetector(
                         onTap: () {
                           // Aksi login di sini, misal validasi atau pindah halaman
-                          // Contoh: Navigator.pushReplacementNamed(context, '/home');
+                          Navigator.pushReplacementNamed(context, '/home');
                           print('Login button tapped');
                         },
                         child: Container(
