@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:setera/app/modules/register/views/register_view.dart';
 
 
 // Controller for login screen
@@ -68,23 +69,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 5),
                     
                     // Placeholder for mascot
-                    Container(
-                      width: 120,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          'Mascot\nPlaceholder',
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.contain,
-                        ),
+                    SizedBox(
+                      width: 170,
+                      height: 170,
+                      child: Image.asset(
+                        'assets/mascot/Group2.png', // Replace with your mascot image
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ],
@@ -163,24 +158,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     // Login Button
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Login functionality would go here
+                      child: GestureDetector(
+                        onTap: () {
+                          // Aksi login di sini, misal validasi atau pindah halaman
+                          // Contoh: Navigator.pushReplacementNamed(context, '/home');
+                          print('Login button tapped');
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF003366),
-                          foregroundColor: Colors.white,
+                        child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF003366),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                        ),
-                        
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 19,
-                            fontWeight: FontWeight.bold,
+                          child: const Center(
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -219,13 +217,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                         child: Center(
-                          child: Text(
-                            'G',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey.shade400,
-                            ),
+                          child: Image.asset(
+                            'assets/logo/google.png', // Replace with your Google icon
+                            width: 30,
+                            height: 30,
+                            fit: BoxFit.contain,
                           ),
                         ),
                       ),
@@ -245,7 +241,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Registration functionality would go here
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const RegisterView()),
+                              );
                             },
                             child: const Text(
                               'Registrasi',
