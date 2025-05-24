@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
@@ -101,9 +102,16 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 0) {
+      setState(() {
+        _selectedIndex = 0;
+      });
+    } else if (index == 1) {
+      // Navigasi ke halaman lain, contoh:
+      Navigator.pushNamed(context, '/receipt'); // Pastikan route '/receipt' sudah ada
+    } else if (index == 2) {
+      Navigator.pushNamed(context, '/profile'); // Pastikan route '/profile' sudah ada
+    }
   }
 
   @override
@@ -178,7 +186,7 @@ class _HomeViewState extends State<HomeView> {
                   clipper: WaveClipper(),
                   child: Container(
                     height: 50,
-                    color: const Color(0xFFF0F5FA),
+                    color: const Color(0xFFF0F5FA), // biru muda mendekati putih
                   ),
                 ),
               ),
@@ -187,13 +195,8 @@ class _HomeViewState extends State<HomeView> {
           // Main content area
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                color: Color(0xFFF0F5FA),
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(60),
-                  bottomLeft: Radius.circular(60),
-                ),
-              ),
+              // Hapus borderRadius agar menempel ke header
+              color: const Color(0xFFF0F5FA), // biru muda mendekati putih
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: Column(
@@ -295,36 +298,39 @@ class _HomeViewState extends State<HomeView> {
       ),
       // Bottom Navigation Bar
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFF003366),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: BottomNavigationBar(
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white.withOpacity(0.6),
-            type: BottomNavigationBarType.fixed,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: '',
+        color: const Color(0xFF003366),
+        child: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white.withOpacity(0.6),
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+              icon: Container(
+                decoration: BoxDecoration(
+                  color: _selectedIndex == 0 ? Colors.white.withOpacity(0.2) : Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Icon(
+                  Icons.home,
+                  color: Colors.white,
+                ),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.receipt_long),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: '',
-              ),
-            ],
-          ),
+              label: '',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.receipt_long),
+              label: '',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: '',
+            ),
+          ],
         ),
       ),
     );

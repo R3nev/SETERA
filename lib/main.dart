@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         } else {
           return GetMaterialApp(
             title: "SETERA",
-            initialRoute: Routes.login,  // Make sure this matches your Routes class
+            debugShowCheckedModeBanner: false, // Add this line
+            initialRoute: Routes.login,
             getPages: AppPages.routes,
           );
         }

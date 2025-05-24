@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/register_controller.dart';
 
+
 class RegisterView extends GetView<RegisterController> {
   const RegisterView({super.key});
 
@@ -134,23 +135,27 @@ class RegisterView extends GetView<RegisterController> {
                     // Register Button
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Register funrctionality here
+                      child: GestureDetector(
+                        onTap: () {
+                          // Register functionality here
+                          Navigator.pushReplacementNamed(context, '/login');
+                          print('Login button tapped');
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF003366),
-                          foregroundColor: Colors.white,
+                        child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF003366),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                        ),
-                        child: const Text(
-                          'Daftar',
-                          style: TextStyle(
-                            fontSize: 19,
-                            fontWeight: FontWeight.bold,
+                          child: const Center(
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),
