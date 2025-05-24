@@ -6,6 +6,8 @@ import '../modules/login/views/login_view.dart';
 import '../modules/login/bindings/login_binding.dart' as login_binding;
 import '../modules/register/views/register_view.dart';
 import '../modules/register/bindings/register_binding.dart' as login_binding;
+import '../modules/profile/views/profile_view.dart';
+import '../modules/profile/bindings/profile_binding.dart' as login_binding;
 
 part '../routes/app_routes.dart';
 class AppPages {
@@ -32,6 +34,11 @@ class AppPages {
       name: _Paths.register,
       page: () => const RegisterView(),
       binding: login_binding.RegisterBinding(),
+    ),
+    GetPage(
+      name: '/profile',
+      page: () => const ProfileScreen(),
+      binding: login_binding.ProfileBinding(), // ganti dengan nama widget halaman profile kamu
     )
   ];
 }

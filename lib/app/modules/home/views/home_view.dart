@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+// import 'package:get/get.dart'; // Jika pakai GetX
+
 void main() {
   runApp(const MyApp());
 }
@@ -163,7 +164,7 @@ class _HomeViewState extends State<HomeView> {
                               ),
                             ),
                             Text(
-                              'CheSylus',
+                              'Qin Sylus Che',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 24,

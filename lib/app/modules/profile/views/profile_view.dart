@@ -54,21 +54,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: SafeArea(
               bottom: false,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 24, 24, 40),
+                padding: const EdgeInsets.fromLTRB(35, 40, 24, 40),
                 child: Row(
                   children: [
                     // Profile picture
                     Container(
                       width: 80,
                       height: 80,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        shape: BoxShape.circle,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle, // pastikan bentuknya lingkaran
                       ),
-                      child: const Icon(
-                        Icons.person,
-                        size: 40,
-                        color: Colors.grey,
+                      clipBehavior: Clip.antiAlias, // agar gambar terpotong lingkaran
+                      child: Image.asset(
+                        'assets/images/husband.jpg',
+                        fit: BoxFit.cover,
                       ),
                     ),
                     const SizedBox(width: 20),
@@ -78,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Sylus',
+                          'Qin Sylus Che',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 24,
@@ -202,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Icon(
               icon,
-              size: 24,
+              size: 37, // Ubah dari 24 ke 32 agar lebih besar
               color: iconColor,
             ),
             const SizedBox(width: 16),
@@ -217,7 +216,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const Spacer(),
             Icon(
               Icons.chevron_right,
-              size: 20,
+              size: 28, // Ubah dari 20 ke 24 agar lebih besar
               color: Colors.grey.shade400,
             ),
           ],

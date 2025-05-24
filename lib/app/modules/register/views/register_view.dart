@@ -23,7 +23,7 @@ class RegisterView extends GetView<RegisterController> {
               top: 0,
               left: 0,
               right: 0,
-              height: screenHeight * 0.35,
+              height: screenHeight * 0.4,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -31,15 +31,15 @@ class RegisterView extends GetView<RegisterController> {
                     const Text(
                       'Silahkan Bergabung',
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Color(0xFFF0E8D5),
                       ),
                     ),
                     const SizedBox(height: 5),
                     SizedBox(
-                      width: 200,
-                      height: 200,
+                      width: 170,
+                      height: 170,
                       child: Image.asset(
                         'assets/mascot/Group2.png',
                         fit: BoxFit.contain,
@@ -54,7 +54,7 @@ class RegisterView extends GetView<RegisterController> {
               bottom: 0,
               left: 0,
               right: 0,
-              height: screenHeight * 0.7,
+              height: screenHeight * 0.65,
               child: Container(
                 decoration: const BoxDecoration(
                   color: Color(0xFFDBE9EB),
@@ -95,7 +95,7 @@ class RegisterView extends GetView<RegisterController> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 25),
                     // Password Field
                     Container(
                       decoration: BoxDecoration(
@@ -113,7 +113,7 @@ class RegisterView extends GetView<RegisterController> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 25),
                     // Confirm Password Field
                     Container(
                       decoration: BoxDecoration(
