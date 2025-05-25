@@ -32,9 +32,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int _selectedIndex = 2; // Profile tab is selected
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 0) {
+      Navigator.pushNamed(context, '/home');
+    } else if (index == 1) {
+      Navigator.pushNamed(context, '/receipt');
+    } else if (index == 2) {
+      setState(() {
+        _selectedIndex = 2;
+      });
+    }
   }
 
   @override
@@ -153,11 +159,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       
       // Bottom Navigation Bar
       bottomNavigationBar: Container(
-        margin: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFF003366),
-          borderRadius: BorderRadius.circular(20),
-        ),
+        color: const Color(0xFF003366),
         child: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,
@@ -166,17 +168,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white.withOpacity(0.6),
           type: BottomNavigationBarType.fixed,
-          items: const [
-            BottomNavigationBarItem(
+          items: [
+            const BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: '',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(Icons.receipt_long),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Container(
+                decoration: BoxDecoration(
+                  color: _selectedIndex == 2 ? Colors.white.withOpacity(0.2) : Colors.transparent,
+                  shape: BoxShape.circle,
+                ),
+                padding: const EdgeInsets.all(8),
+                child: Icon(
+                  Icons.person,
+                  color: Colors.white,
+                ),
+              ),
               label: '',
             ),
           ],
@@ -193,7 +205,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return GestureDetector(
       onTap: () {
         // Handle menu item tap
-        print('Tapped on $title');
+        if (title == 'Keluar') {
+          Navigator.pushReplacementNamed(context, '/login');
+        } else if (title == 'Profile') {
+          Navigator.pushNamed(context, '/profile_edit'); // Pastikan route '/profile-edit' sudah ada
+        } else {
+          print('Tapped on $title');
+        }
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
@@ -201,7 +219,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Icon(
               icon,
-              size: 37, // Ubah dari 24 ke 32 agar lebih besar
+              size: 37,
               color: iconColor,
             ),
             const SizedBox(width: 16),
@@ -216,7 +234,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const Spacer(),
             Icon(
               Icons.chevron_right,
-              size: 28, // Ubah dari 20 ke 24 agar lebih besar
+              size: 28,
               color: Colors.grey.shade400,
             ),
           ],
