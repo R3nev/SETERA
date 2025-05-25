@@ -5,11 +5,16 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/login/bindings/login_binding.dart' as login_binding;
 import '../modules/register/views/register_view.dart';
-import '../modules/register/bindings/register_binding.dart' as login_binding;
+import '../modules/register/bindings/register_binding.dart' as register_binding;
 import '../modules/profile/views/profile_view.dart';
-import '../modules/profile/bindings/profile_binding.dart' as login_binding;
+import '../modules/profile/bindings/profile_binding.dart' as profile_binding;
+import '../modules/profile_edit/views/profile_edit_view.dart';
+import '../modules/profile_edit/bindings/profile_edit_binding.dart' as profile_edit_binding;
+import '../modules/more/views/more_view.dart';
+import '../modules/more/bindings/more_binding.dart' as more_binding;
 
-part '../routes/app_routes.dart';
+part 'app_routes.dart';
+
 class AppPages {
   AppPages._();
 
@@ -18,7 +23,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.splash,
-      page: () => SplashScreen(),
+      page: () => const SplashScreen(),
     ),
     GetPage(
       name: _Paths.home,
@@ -33,12 +38,27 @@ class AppPages {
     GetPage(
       name: _Paths.register,
       page: () => const RegisterView(),
-      binding: login_binding.RegisterBinding(),
+      binding: register_binding.RegisterBinding(),
     ),
     GetPage(
-      name: '/profile',
+      name: _Paths.profile,
       page: () => const ProfileScreen(),
-      binding: login_binding.ProfileBinding(), // ganti dengan nama widget halaman profile kamu
-    )
+      binding: profile_binding.ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.profile_edit,
+      page: () => ProfileEditScreen(initialProfile: const {
+        'nama': 'Sylus',
+        'kelas': 'XII IPS A',
+        'password': 'Admin123',
+        'absen': '27',
+      }),
+      binding: profile_edit_binding.ProfileEditBinding(),
+    ),
+    GetPage(
+      name: _Paths.more,
+      page: () => const ReadingPage(),
+      binding: more_binding.MoreBinding(),
+    ),
   ];
 }
