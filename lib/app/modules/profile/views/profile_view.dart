@@ -31,18 +31,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   int _selectedIndex = 2; // Profile tab is selected
 
-  void _onItemTapped(int index) {
-    if (index == 0) {
-      Navigator.pushNamed(context, '/home');
-    } else if (index == 1) {
-      Navigator.pushNamed(context, '/receipt');
-    } else if (index == 2) {
-      setState(() {
-        _selectedIndex = 2;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          'XII IPS A',
+                          'IX A',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -124,15 +112,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   
                   const SizedBox(height: 24),
                   
-                  // Poin Pelanggan menu item
-                  _buildMenuItem(
-                    icon: Icons.star,
-                    title: 'Poin Pelanggan',
-                    iconColor: Colors.orange,
-                  ),
-                  
-                  const SizedBox(height: 24),
-                  
                   // Pengaturan menu item
                   _buildMenuItem(
                     icon: Icons.settings,
@@ -157,41 +136,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       
-      // Bottom Navigation Bar
+      // Bottom Navigation Bar - Updated to match home screen style
       bottomNavigationBar: Container(
-        color: const Color(0xFF003366),
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white.withOpacity(0.6),
-          type: BottomNavigationBarType.fixed,
-          items: [
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '',
-            ),
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.receipt_long),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Container(
-                decoration: BoxDecoration(
-                  color: _selectedIndex == 2 ? Colors.white.withOpacity(0.2) : Colors.transparent,
-                  shape: BoxShape.circle,
-                ),
-                padding: const EdgeInsets.all(8),
-                child: Icon(
-                  Icons.person,
-                  color: Colors.white,
-                ),
-              ),
-              label: '',
+        margin: EdgeInsets.all(20),
+        height: 60,
+        decoration: BoxDecoration(
+          color: Color(0xFF2E5C8A),
+          borderRadius: BorderRadius.circular(30),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 10,
+              offset: Offset(0, 5),
             ),
           ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _buildNavItem(Icons.home_outlined, 0),
+            _buildNavItem(Icons.description_outlined, 1),
+            _buildNavItem(Icons.person, 2),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, int index) {
+    bool isSelected = _selectedIndex == index;
+    return GestureDetector(
+      onTap: () {
+        if (index == 0) {
+          Navigator.pushNamed(context, '/home');
+        } else if (index == 1) {
+          Navigator.pushNamed(context, '/poin_plus'); 
+        } else if (index == 2) {
+          setState(() {
+            _selectedIndex = 2;
+          });
+        }
+      },
+      child: Container(
+        width: 50,
+        height: 40,
+        decoration: BoxDecoration(
+          color: isSelected ? Colors.white.withOpacity(0.2) : Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Icon(
+          icon,
+          color: Colors.white,
+          size: isSelected && index == 2 ? 30 : 24, // Profile icon lebih besar saat aktif
         ),
       ),
     );
@@ -208,7 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         if (title == 'Keluar') {
           Navigator.pushReplacementNamed(context, '/login');
         } else if (title == 'Profile') {
-          Navigator.pushNamed(context, '/profile_edit'); // Pastikan route '/profile-edit' sudah ada
+          Navigator.pushNamed(context, '/profile_edit');
         } else {
           print('Tapped on $title');
         }

@@ -9,7 +9,6 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Color (0xFF488DB4),
       body: Center(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/register_controller.dart';
 
-
 class RegisterView extends GetView<RegisterController> {
   const RegisterView({super.key});
 
@@ -12,6 +11,8 @@ class RegisterView extends GetView<RegisterController> {
     final TextEditingController _emailController = TextEditingController();
     final TextEditingController _passwordController = TextEditingController();
     final TextEditingController _confirmPasswordController = TextEditingController();
+    final TextEditingController _fullNameController = TextEditingController(); // New controller for full name
+    final TextEditingController _nisnController = TextEditingController(); // New controller for NISN
 
     return Scaffold(
       body: Container(
@@ -36,15 +37,8 @@ class RegisterView extends GetView<RegisterController> {
                         color: Color(0xFFF0E8D5),
                       ),
                     ),
-                    const SizedBox(height: 5),
-                    SizedBox(
-                      width: 170,
-                      height: 170,
-                      child: Image.asset(
-                        'assets/mascot/Group2.png',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
+                    const SizedBox(height: 150),
+                    
                   ],
                 ),
               ),
@@ -54,7 +48,7 @@ class RegisterView extends GetView<RegisterController> {
               bottom: 0,
               left: 0,
               right: 0,
-              height: screenHeight * 0.65,
+              height: screenHeight * 0.8,
               child: Container(
                 decoration: const BoxDecoration(
                   color: Color(0xFFDBE9EB),
@@ -79,6 +73,40 @@ class RegisterView extends GetView<RegisterController> {
                       ),
                     ),
                     const SizedBox(height: 28),
+                    // Full Name Field
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFBFBFB),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey.shade100),
+                      ),
+                      child: TextField(
+                        controller: _fullNameController,
+                        decoration: const InputDecoration(
+                          hintText: 'Nama Lengkap',
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 25),
+                    // NISN Field
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFBFBFB),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey.shade100),
+                      ),
+                      child: TextField(
+                        controller: _nisnController,
+                        decoration: const InputDecoration(
+                          hintText: 'NISN',
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 25),
                     // Email Field
                     Container(
                       decoration: BoxDecoration(

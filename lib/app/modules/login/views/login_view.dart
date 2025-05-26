@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
               bottom: 0,
               left: 0,
               right: 0,
-              height: screenHeight * 0.65, // Takes up approximately 65% of screen
+              height: screenHeight * 0.68, // Takes up approximately 65% of screen
               child: Container(
                 decoration: const BoxDecoration(
                   color: Color(0xFFDBE9EB), // Light blue-gray background

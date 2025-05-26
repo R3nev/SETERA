@@ -73,14 +73,14 @@ class _ProfileEditPageState extends State<ProfileEditScreen> {
             borderRadius: BorderRadius.circular(16),
           ),
           title: Text(
-            'Discard Changes?',
+            'Buang Perubahan?',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
           ),
           content: Text(
-            'You have unsaved changes. Are you sure you want to discard them?',
+            'Anda memiliki perubahan yang belum disimpan. Apakah Anda yakin ingin membuangnya?',
             style: TextStyle(
               fontSize: 14,
               color: Colors.grey[600],
@@ -161,14 +161,14 @@ class _ProfileEditPageState extends State<ProfileEditScreen> {
             },
             icon: Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: Colors.white,
               size: 24,
             ),
           ),
           title: Text(
             'Profile',
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.w600,
             ),
@@ -180,7 +180,9 @@ class _ProfileEditPageState extends State<ProfileEditScreen> {
               child: TextButton(
                 onPressed: hasChanges ? _saveProfile : null,
                 style: TextButton.styleFrom(
-                  backgroundColor: hasChanges ? Colors.blue : Colors.grey[300],
+                  backgroundColor: hasChanges 
+                      ? Colors.white.withOpacity(0.9) 
+                      : Colors.white.withOpacity(0.5),
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -189,7 +191,7 @@ class _ProfileEditPageState extends State<ProfileEditScreen> {
                 child: Text(
                   'Save',
                   style: TextStyle(
-                    color: hasChanges ? Colors.white : Colors.grey[600],
+                    color: Color(0XFF022F56),
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
@@ -198,75 +200,93 @@ class _ProfileEditPageState extends State<ProfileEditScreen> {
             ),
           ],
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xFF6B73FF),
-                Color(0xFF9546C4),
-              ],
-            ),
-          ),
-          child: SingleChildScrollView( // Wrap the Column in SingleChildScrollView
-            child: Column(
+        extendBodyBehindAppBar: true,
+        body: Stack(
+          children: [
+            Column(
               children: [
-                // Profile Picture Section
+                // Top solid color section
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 30),
-                  child: Stack(
-                    children: [
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage('assets/images/husband.jpg'), // Replace with your image
-                        backgroundColor: Colors.grey[300],
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          padding: EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            color: Colors.black54,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.camera_alt,
-                            color: Colors.white,
-                            size: 16,
-                          ),
+                  height: 280,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF022F56), // Solid color
+                  ),
+                ),
+                // Bottom white section
+                Expanded(
+                  child: Container(
+                    color: Colors.white,
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 80, left: 24, right: 24, bottom: 24),
+                        child: Column(
+                          children: [
+                            _buildTextField('Nama', namaController),
+                            SizedBox(height: 16),
+                            _buildTextField('Kelas', kelasController),
+                            SizedBox(height: 16),
+                            _buildAbsenDropdown(),
+                            SizedBox(height: 16),
+                            _buildTextField('Password', passwordController, isPassword: true),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-
-                // Form Section
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
                     ),
-                  ),
-                  padding: EdgeInsets.all(24),
-                  child: Column(
-                    children: [
-                      _buildTextField('Nama', namaController),
-                      SizedBox(height: 16),
-                      _buildTextField('Kelas', kelasController),
-                      SizedBox(height: 16),
-                      _buildAbsenDropdown(),
-                      SizedBox(height: 16),
-                      _buildTextField('Password', passwordController, isPassword: true),
-                    ],
                   ),
                 ),
               ],
             ),
-          ),
+            // Profile picture positioned to overlap both sections
+            Positioned(
+              top: 180,
+              left: MediaQuery.of(context).size.width / 2 - 60,
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 4,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage('assets/images/husband.jpg'),
+                      backgroundColor: Colors.grey[300],
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 5,
+                    right: 5,
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.7),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 2,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.camera_alt,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -337,69 +357,6 @@ class _ProfileEditPageState extends State<ProfileEditScreen> {
           });
         },
         icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
-      ),
-    );
-  }
-}
-
-// Usage example for navigating to this page:
-class ProfilePage extends StatefulWidget {
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  Map<String, dynamic> profileData = {
-    'nama': 'Sylus',
-    'kelas': 'XII IPS A',
-    'password': 'Admin123',
-    'absen': '27',
-  };
-
-  void _navigateToEditProfile() async {
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ProfileEditScreen(initialProfile: profileData),
-      ),
-    );
-
-    if (result != null) {
-      setState(() {
-        profileData = result;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Profile updated successfully!'),
-          backgroundColor: Colors.green,
-        ),
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-        actions: [
-          IconButton(
-            onPressed: _navigateToEditProfile,
-            icon: Icon(Icons.edit),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Nama: ${profileData['nama']}'),
-            Text('Kelas: ${profileData['kelas']}'),
-            Text('Absen: ${profileData['absen']}'),
-            Text('Password: ${profileData['password']}'),
-          ],
-        ),
       ),
     );
   }

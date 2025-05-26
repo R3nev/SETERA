@@ -12,7 +12,12 @@ abstract class Routes {
   static const profile = _Paths.profile;
   static const profile_edit = _Paths.profile_edit;
   static const more = _Paths.more;
-  static const tatib = _Paths.tatib;
+  static const klasifikasi = _Paths.klasifikasi;
+  static const NOTIF = _Paths.NOTIF;
+  static const POIN_PELANGGARAN = _Paths.POIN_PELANGGARAN;
+  static const POIN_TAMBAHANA = _Paths.POIN_TAMBAHANA;
+  static const POIN_PLUS = _Paths.POIN_PLUS;
+  static const SETTING = _Paths.SETTING;
 }
 
 abstract class _Paths {
@@ -26,5 +31,10 @@ abstract class _Paths {
   static const profile = '/profile';
   static const profile_edit = '/profile_edit';
   static const more = '/more';
-  static const tatib = '/tatib';
+  static const klasifikasi = '/klasifikasi';
+  static const NOTIF = '/notif';
+  static const POIN_PELANGGARAN = '/poin-pelanggaran';
+  static const POIN_TAMBAHANA = '/poin-tambahana';
+  static const POIN_PLUS = '/poin_plus';
+  static const SETTING = '/setting';
 }
